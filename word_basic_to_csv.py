@@ -93,6 +93,8 @@ def build_label_sets(
 
     for spec in label_specs or []:
         lbl, p = parse_label_spec(spec)
+        if not p.exists():
+            raise FileNotFoundError(f"标签文件不存在: {p}")
         merged[lbl].update(load_word_set(p, encoding=encoding))
 
     # keep stable order: auto labels order first, then manual specs in appearance order
@@ -101,12 +103,16 @@ def build_label_sets(
     if auto_labels:
         for lbl in AUTO_LABEL_FILES.keys():
             if lbl in merged and lbl not in seen:
-                out.append((lbl, merged[lbl]))
+                # 只添加非空的标签集合
+                if merged[lbl]:
+                    out.append((lbl, merged[lbl]))
                 seen.add(lbl)
     for spec in label_specs or []:
         lbl, _ = parse_label_spec(spec)
         if lbl in merged and lbl not in seen:
-            out.append((lbl, merged[lbl]))
+            # 只添加非空的标签集合
+            if merged[lbl]:
+                out.append((lbl, merged[lbl]))
             seen.add(lbl)
     return out
 
@@ -495,6 +501,14 @@ def main() -> None:
         auto_labels=bool(args.auto_labels),
         encoding=args.encoding,
     )
+    
+    # 打印诊断信息
+    if label_sets:
+        print(f"已加载 {len(label_sets)} 个标签集合:")
+        for lbl, words in label_sets:
+            print(f"  - {lbl}: {len(words)} 个单词")
+    elif args.label:
+        print("警告: 指定的标签文件未找到或为空")
 
     convert_file_with_output_encoding(
         args.input,

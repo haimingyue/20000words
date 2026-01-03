@@ -1,0 +1,14 @@
+# COCA -> CSV，使用所有级别的标签文件
+python3 word_basic_to_csv.py \
+  "COCA 2024 美音终极版__第3万单词__28001-30050.txt" \
+  "COCA 2024 美音终极版__第3万单词__28001-30050.csv" \
+  --encoding utf-8 \
+  --label "小学=广州小学英语__仅单词.txt" \
+  --label "初中=初中英语单词__仅单词.txt" \
+  --label "高中=高中英语单词__仅单词.txt" \
+  --label "四级=大学四级英语单词__仅单词.txt" \
+  --label "六级=大学六级英语单词__仅单词.txt" \
+  --label "考研=考研词汇5500__仅单词.txt" \
+  --label "GRE=极品GRE红宝书__仅单词.txt" \
+  --label "TOEFL=TOEFL词汇__仅单词.txt"
+
