@@ -1,3 +1,10 @@
-python3 word_basic_to_csv.py "COCA 2024 美音终极 版__第1万单词__0001-2000.txt" output.csv --encoding utf8
 python3 "/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/extract_words_only.py" \
-  "/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/初中英语单词.txt"
+  "/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/TOEFL词汇词根+联想记忆法：乱序版.txt"
+
+# COCA -> CSV，并用“初中英语单词__仅单词.txt”命中的单词打 level=初中 标记
+python3 "/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/word_basic_to_csv.py" \
+  "/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/COCA 2024 美音终极版__第1万单词__0001-2000.txt" \
+  "/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/COCA 2024 美音终极版__第1万单词__0001-2000.csv" \
+  --encoding utf-8 \
+  --label "小学=/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/广州小学英语__仅单词.txt" \
+  --label "初中=/Users/simoonqian/Library/Mobile Documents/com~apple~CloudDocs/project_support/3万词项目/test/初中英语单词__仅单词.txt"
